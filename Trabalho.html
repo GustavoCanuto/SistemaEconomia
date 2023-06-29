@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-       <!--  
+    <!--  
    Desenvolvido por: Gustavo Canuto
+
    Descrição do problema:Não conseguir controlar gastos para economizar, nao ter controle do quanto gastou, economizou e com o que gastou.
-    
 
     Descrição breve do funcionamento do algoritmo:É cadastrado uma media dos gastos essencial, 
     renda e o valor que gostaria de economizar para manter reservado, se os valores inseridos for possivel fazer uma economia é exibido a pagina 
@@ -13,304 +14,319 @@
     mostrando o registro de gasto e um relatorio mostrando total de gasto com cada categoria, dia que mais gastou e se a pessoa conseguiu
     economizar aquele mês.
 
-    Identificação das variáveis de entrada:
+    *********************************
+Identificação das variáveis de entrada:
+
     formulario1 : Recebe informação formulario dos gastos essencial para verificar se ele foi preenchido conforme parametros
+
     formulario2 : Recebe informação formulario dos gastos não essencial para verificar se ele foi preenchido conforme parametros
+
     registro :Recebe informação do fieldset registro para inserir e apagar texto dentro dele
     
-       
-            AluguelInput,
-            AguaInput,
-            EnergiaInput,
-            TelefoneInput,
-            GasInput,
-            AlimentacaoInput,
-            transporteInput,
-            OutrosInput,
-            RendaInput,
-            EconomiaInput :
-       Recebe valores dos inputs do formulario de gastos essenciais 
+    AluguelInput,
+    AguaInput,
+    EnergiaInput,
+    TelefoneInput,
+    GasInput,
+    AlimentacaoInput,
+    transporteInput,
+    OutrosInput,
+    RendaInput,
+    EconomiaInput :
+    Recebe valores dos inputs do formulario de gastos essenciais 
     
-    
-            EntretenimentoInput, 
-            ModaInput, 
-            fastfoodInput, 
-            ViagensInput, 
-            EletronicosInput, 
-            UtensiliosInput, 
-            OutrosNaoInput, 
-            ObservacaoInput:
-         Recebe valores dos inputs do formulario de gastos não essenciais 
+    EntretenimentoInput, 
+    ModaInput, 
+    fastfoodInput, 
+    ViagensInput, 
+    EletronicosInput, 
+    UtensiliosInput, 
+    OutrosNaoInput, 
+    ObservacaoInput:
+    Recebe valores dos inputs do formulario de gastos não essenciais 
     
 
     ***************************
+Identificação das variáveis de saida:
 
-    Identificação das variáveis de saida:
-   TotalEssencial: mostra soma dos valores inseridos no Inputs dos gastos essenciais
+    TotalEssencial: mostra soma dos valores inseridos no Inputs dos gastos essenciais
+
     MaximoEconomia: Saldo, valor da renda menos gastos totais, usado para informar valor maximo possivel economizar e saldo 
+
     ValorPodeGastar:valor que pode gastar sem ultrapassar valor que deseja economizar, Valor maximo que pode economizar menos valor que desaja economizar
+
     ValorSugeridoGastarPorDia: mostra valor que pode gastar dividido por 31
-    TotalGastoNoMes:</em> mostrar soma total essencial e nao essencial
+
+    TotalGastoNoMes:mostrar soma total essencial e nao essencial
+
     TotalGastoNoDia:mostra soma dos valores gasto no dia 
+
     DiaMaiorGasto:utilizada para mostrar dia com maior gasto
-  MaisDeUmDia: mostra os dias maiores gasto, utilizada para caso dia maior gasto seja igual outro dia
-    
-  
-            TotalEntretenimento, 
-            TotalModa, 
-            Totalfastfood, 
-            TotalViagens, 
-            TotalEletronicos, 
-            TotalUtensilios, 
-            TotalOutrosNao, 
-            TotalNaoEssencial :
-       utlizadas para msotrar a soma dos valores de cada categoria conforme os nomes da variaveis
-    
-    ValorDiaMaiorGasto:</em> mostra o valor do dia com maior gasto
-  diaAtual: mostra o dia atual 
-   
-            pDiaDosGastos, 
-            pValorGastoEntretenimento, 
-            pValorGastoModa, 
-            pValorGastofastfood, 
-            pValorGastoViagens, 
-            pValorGastoEletronicos, 
-            pValorGastoUtensilios, 
-            pValorGastoOutrosNao, 
-            pValorTotalGastoDia, 
-            pValorObservacao :
-       Criar um paragrafo para exibir valores de acordo com o nome da varaivel 
 
-   
+    MaisDeUmDia: mostra os dias maiores gasto, utilizada para caso dia maior gasto seja igual outro dia
 
+    TotalEntretenimento, 
+    TotalModa, 
+    Totalfastfood, 
+    TotalViagens, 
+    TotalEletronicos, 
+    TotalUtensilios, 
+    TotalOutrosNao, 
+    TotalNaoEssencial : utlizadas para mostrar a soma dos valores de cada categoria conforme os nomes da variaveis
+    
+    ValorDiaMaiorGasto: mostra o valor do dia com maior gasto
+    diaAtual: mostra o dia atual 
+   
+    pDiaDosGastos, 
+    pValorGastoEntretenimento, 
+    pValorGastoModa, 
+    pValorGastofastfood, 
+    pValorGastoViagens, 
+    pValorGastoEletronicos, 
+    pValorGastoUtensilios, 
+    pValorGastoOutrosNao, 
+    pValorTotalGastoDia, 
+    ValorObservacao :
+    Criar um paragrafo para exibir valores de acordo com o nome da varaivel 
 
     ***************************
+Identificação das variáveis de controle:
 
-   Identificação das variáveis de controle:
     SomaEssencialEconomia:Soma valores essencial mais Valor que deseja economizar para verificar se não é maior que a renda
-    <em>valorPodeGastarFixo:</em> valor que pode gastar sem ultrapassar valor que deseja economizar, porém considerando apenas gastos essencial e valor que gostaria de economizar, utilizado para verificar a porcentagem que foi gasta em relação valor inicial
-    <em>TituloGastoDiarios: recupera legend do fieldset registro de gastos
-   PorcetagemGastoNaoEssencial:  valor em porcentagem de valor gasto em relação valor que pode gastar inicial
+
+    valorPodeGastarFixo: valor que pode gastar sem ultrapassar valor que deseja economizar, porém considerando apenas gastos essencial e valor que gostaria de economizar, utilizado para verificar a porcentagem que foi gasta em relação valor inicial
+
+    TituloGastoDiarios: recupera legend do fieldset registro de gasto
+
+    PorcetagemGastoNaoEssencial:  valor em porcentagem de valor gasto em relação valor que pode gastar inicial
     
- 
     -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Codigo.js" defer></script>
 
-
     <title>Sistema que ajuda Economizar</title>
 
 </head>
+
 <body>
 
-<header>
- 
-</header>
+    <header>
 
-<main>
-    <br>
-    <!-- FieldSet Gastos essencias -->
-    <fieldset id="essenciais">
+    </header>
 
-        <legend>Registro Gastos Essenciais</legend>
-            
-        <h3 id="TextoPrimeiraPagina">Informe a media mensal dos gastos essenciais :</h3>
+    <main>
+        <br>
+        <!-- FieldSet Gastos essencias -->
+        <fieldset id="essenciais">
 
-        <form id="form1" >
+            <legend>Registro Gastos Essenciais</legend>
 
-            
-            <div style="display: inline-block;  vertical-align: top; margin-right: 30px;">
-                <label for="Aluguel">Aluguel:</label><br>
-                <input type="number" id="Aluguel" name="Aluguel"  min="0.00" max="999999999" step="0.01">
-                
-                <br><br>
-    
-                <label for="Agua">Água:</label><br>
-                <input type="number" id="Agua" name="Agua"  min="0.00" max="999999999" step="0.01">
-                <br><br>
-    
-                <label for="Energia">Energia:</label><br>
-                <input type="number" id="Energia" name="Energia" min="0.00" max="999999999" step="0.01">
-                <br><br>
-    
-                <label for="Telefone">Telefone/ Internet:</label><br>
-                <input type="number" id="Telefone" name="Telefone" min="0.00" max="999999999" step="0.01">
-                <br><br>
-            </div>
+            <h3 id="TextoPrimeiraPagina">Informe a media mensal dos gastos essenciais :</h3>
 
-            <div style="display: inline-block">
+            <form id="form1">
 
-                <label for="Gas">Gás:</label><br>
-                <input type="number" id="Gas" name="Gas" min="0.00" max="999999999" step="0.01">
-                <br><br>
-    
-                <label for="Alimentacao">Alimentação:</label><br>
-                <input type="number" id="Alimentacao" name="Alimentacao"  min="0.00" max="999999999" step="0.01">
-                <br><br>
-    
-                <label for="Transporte">Transporte essencial:</label><br>
-                <input type="number" id="Transporte" name="Transporte"  min="0.00" max="999999999" step="0.01">
-                <br><br>
-    
-                <label for="Outros">Outros Gastos essenciais:</label><br>
-                <input type="number" id="Outros" name="Outros"  min="0.00" max="999999999" step="0.01">
-                <br><br>
 
-            </div>
+                <div style="display: inline-block;  vertical-align: top; margin-right: 30px;">
+                    <label for="Aluguel">Aluguel:</label><br>
+                    <input type="number" id="Aluguel" name="Aluguel" min="0.00" max="999999999" step="0.01">
 
-                <div style="vertical-align: left; " >
-                    <h3 id="TextoRenda">Média de Rendimento Mensal:</h3>
-        
-                    <label for="Renda">Digite sua renda Mensal:</label><br>
-                    <input type="number" id="Renda" name="Renda"  min="0.02" max="999999999" step="0.01" required>
                     <br><br>
-        
-                    <div id="divEconomia">
-        
-                    <label for="Economia">Digite quanto gostaria de economizar esse mês:</label><br>
-                    <input type="number" id="Economia" name="Economia"  min="0.01" max="999999999" step="0.01" required>
-                  </div>
-                </div>
-            
-            <br><br>
-            
-           <!-- Botão Registrar - Encaminha para fieldset Não-Essencial -->
-            <button type="button" id ="BotaoRegistrar" onclick="MostrarNaoEssencais(); document.getElementById('form1').reportValidity();">Registrar </button>
 
-            <!-- Botão Mostrar Relatorio - Esconde esse fieldset e libera fieldset registro e relatorio dos valores -->
-            <button type="button" id ="BotaoMostrarRelatorio"onclick="MostrarRelatorio(); 
+                    <label for="Agua">Água:</label><br>
+                    <input type="number" id="Agua" name="Agua" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                    <label for="Energia">Energia:</label><br>
+                    <input type="number" id="Energia" name="Energia" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                    <label for="Telefone">Telefone/ Internet:</label><br>
+                    <input type="number" id="Telefone" name="Telefone" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+                </div>
+
+                <div style="display: inline-block">
+
+                    <label for="Gas">Gás:</label><br>
+                    <input type="number" id="Gas" name="Gas" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                    <label for="Alimentacao">Alimentação:</label><br>
+                    <input type="number" id="Alimentacao" name="Alimentacao" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                    <label for="Transporte">Transporte essencial:</label><br>
+                    <input type="number" id="Transporte" name="Transporte" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                    <label for="Outros">Outros Gastos essenciais:</label><br>
+                    <input type="number" id="Outros" name="Outros" min="0.00" max="999999999" step="0.01">
+                    <br><br>
+
+                </div>
+
+                <div style="vertical-align: left; ">
+                    <h3 id="TextoRenda">Média de Rendimento Mensal:</h3>
+
+                    <label for="Renda">Digite sua renda Mensal:</label><br>
+                    <input type="number" id="Renda" name="Renda" min="0.02" max="999999999" step="0.01" required>
+                    <br><br>
+
+                    <div id="divEconomia">
+
+                        <label for="Economia">Digite quanto gostaria de economizar esse mês:</label><br>
+                        <input type="number" id="Economia" name="Economia" min="0.01" max="999999999" step="0.01"
+                            required>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <!-- Botão Registrar - Encaminha para fieldset Não-Essencial -->
+                <button type="button" id="BotaoRegistrar"
+                    onclick="MostrarNaoEssencais(); document.getElementById('form1').reportValidity();">Registrar
+                </button>
+
+                <!-- Botão Mostrar Relatorio - Esconde esse fieldset e libera fieldset registro e relatorio dos valores -->
+                <button type="button" id="BotaoMostrarRelatorio" onclick="MostrarRelatorio(); 
             document.getElementById('form1').reportValidity();" style="display: none;">Mostrar relatório </button>
 
-        </form>
+            </form>
 
-    </fieldset>
+        </fieldset>
 
-    
-    <!-- Fieldset Gastos Não essencial -->    
-    <fieldset id="nao-essenciais" style="display: none;">
-        <legend>Registro Gastos Não-Essenciais Diário</legend>
 
-        <!-- Tabela formulario 2 e valores Atuais -->
-    <table >
+        <!-- Fieldset Gastos Não essencial -->
+        <fieldset id="nao-essenciais" style="display: none;">
+            <legend>Registro Gastos Não-Essenciais Diário</legend>
 
+            <!-- Tabela formulario 2 e valores Atuais -->
+            <table>
+
+                <tr>
+                    <td>
+                        <h3 id="dia">Dia 01 - Informe os gastos realizado hoje: </h3>
+
+                        <!-- Formulario Gastos Não essencial -->
+                        <form id="form2" style=" width: 100% ">
+
+
+                            <label for="Entretenimento">Entretenimento:</label><br>
+                            <input type="number" id="Entretenimento" name="Entretenimento" min="0.00" max="999999999"
+                                step="0.01">
+                            <br><br>
+
+                            <label for="Moda">Moda e Beleza:</label><br>
+                            <input type="number" id="Moda" name="Moda" min="0.00" max="999999999" step="0.01">
+                            <br><br>
+
+                            <label for="fastfood">Fast Food:</label><br>
+                            <input type="number" id="fastfood" name="fastfood" min="0.00" max="999999999" step="0.01">
+                            <br><br>
+
+                            <label for="Viagens">Viagens:</label><br>
+                            <input type="number" id="Viagens" name="Viagens" min="0.00" max="999999999" step="0.01">
+                            <br><br>
+
+                            <label for="Eletronicos">Eletrônicos:</label><br>
+                            <input type="number" id="Eletronicos" name="Eletronicos" min="0.00" max="999999999"
+                                step="0.01">
+                            <br><br>
+
+                            <label for="Utensilios">Utensílios:</label><br>
+                            <input type="number" id="Utensilios" name="Utensilios" min="0.00" max="999999999"
+                                step="0.01">
+                            <br><br>
+
+                            <label for="OutrosNao">Outros Gastos:</label><br>
+                            <input type="number" id="OutrosNao" name="OutrosNao" min="0.00" max="999999999" step="0.01">
+                            <br><br>
+
+                            <label for="Observacao">Observação sobre o dia :</label><br>
+                            <input type="text" id="Observacao" name="Observacao" maxlength="100">
+                            <br><br>
+
+                            <button type="button"
+                                onclick="GastosNaoEssenciais(); limparFormulario(); document.getElementById('form2').reportValidity();">Registar
+                                gastos do dia
+                            </button>
+                            <!--vou precisar colocar um if dia == 31 chamar gastos essenciais com valores, aumentar um dia-->
+
+                            <button type="button"
+                                onclick=" RertornoEssenciais(); GastosNaoEssenciais(); limparFormulario(); document.getElementById('form2').reportValidity();">Finalizar
+                                registro de gastos </button>
+                            <!--chamar gastos essenciais com valores -->
+
+
+
+                        </form>
+                    </td>
+
+                    <td style="vertical-align: top; width: 500px ">
+
+                        <p id="ValorSugeridoDiario" style="text-align: right;">valor sugerido gastar por dia :</p>
+                        <p id="ValorMaximoGastar" style="text-align: right;">valor maximo possivel gastar: </p>
+                        <p id="MetaEconomia" style="text-align: right;">Meta de economia desse Mês:</p>
+
+
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+
+
+        <!-- Registo e relatorio dos valores  -->
+        <table>
             <tr>
                 <td>
-                    <h3 id="dia">Dia 01 - Informe os gastos realizado hoje: </h3>
-        
-                <!-- Formulario Gastos Não essencial -->
-                    <form id="form2" style=" width: 100% ">
-        
-                    
-                    <label for="Entretenimento">Entretenimento:</label><br>
-                    <input type="number" id="Entretenimento" name="Entretenimento"  min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="Moda">Moda e Beleza:</label><br>
-                    <input type="number" id="Moda" name="Moda" min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="fastfood">Fast Food:</label><br>
-                    <input type="number" id="fastfood" name="fastfood" min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="Viagens">Viagens:</label><br>
-                    <input type="number" id="Viagens" name="Viagens"  min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="Eletronicos">Eletrônicos:</label><br>
-                    <input type="number" id="Eletronicos" name="Eletronicos"  min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="Utensilios">Utensílios:</label><br>
-                    <input type="number" id="Utensilios" name="Utensilios"  min="0.00" max="999999999" step="0.01">
-                    <br><br>
-        
-                    <label for="OutrosNao">Outros Gastos:</label><br>
-                    <input type="number" id="OutrosNao" name="OutrosNao"  min="0.00" max="999999999" step="0.01">
-                    <br><br>
+                    <fieldset id="registro" style="display: none; ">
 
-                    <label for="Observacao">Observação sobre o dia :</label><br>
-                    <input type="text" id="Observacao" name="Observacao"  maxlength="100">
-                    <br><br>
-        
-                    <button type="button" onclick="GastosNaoEssenciais(); limparFormulario(); document.getElementById('form2').reportValidity();">Registar gastos do dia
-                    </button> <!--vou precisar colocar um if dia == 31 chamar gastos essenciais com valores, aumentar um dia-->
-        
-                    <button type="button" onclick=" RertornoEssenciais(); GastosNaoEssenciais(); limparFormulario(); document.getElementById('form2').reportValidity();">Finalizar registro de gastos </button>
-                     <!--chamar gastos essenciais com valores -->
-        
-                    
-        
-                    </form>
+                        <legend id="TituloGastoDiarios">Registro de gastos diarios</legend>
+
+                    </fieldset>
                 </td>
 
-                <td style="vertical-align: top; width: 500px ">
-                 
-                <p id ="ValorSugeridoDiario" style ="text-align: right;">valor sugerido gastar por dia :</p>
-                <p id ="ValorMaximoGastar" style ="text-align: right;">valor maximo possivel gastar: </p>
-                <p id ="MetaEconomia" style ="text-align: right;">Meta de economia desse Mês:</p>
-                
-            
-                </td>
+                <td style="vertical-align: top;">
+                    <!-- FieldSet Relatorio -->
+                    <fieldset id="relatorio" style="display: none; ">
 
+                        <legend id="TituloRelatorio">Relatório sobre seus gastos mensal </legend>
+
+                        <p id="pMessagemMeta"> </p>
+
+                        <p id="pTotalGastoNoMes"> </p>
+                        <p id="pTotalEssencial"> </p>
+                        <p id="pTotalNaoEssencial"> </p>
+                        <p id="pTotalEntretenimento"> </p>
+                        <p id="pTotalModa"> </p>
+                        <p id="pTotalfastfood"> </p>
+                        <p id="pTotalViagens"> </p>
+                        <p id="pTotalEletronicos"> </p>
+                        <p id="pTotalUtensilios"> </p>
+                        <p id="pTotalOutrosNao"> </p>
+                        <p id="pDiaQueMaisGastou"> </p>
+                        <p id="pObservacaoDiaMaisGastou"> </p>
+
+                        <p id="pDiaMaiorGasto"> </p>
+                        <p id="pObservacaoDiaMaiorGasto"></p>
+
+                    </fieldset>
+                </td>
+                <td style="vertical-align: top;">
+
+                    <button type="button" id="NovoMes"
+                        onclick=" InserirNovoMes(); document.getElementById('form2').reportValidity();"
+                        style="display: none;">Inserir valores para Novo Mês</button>
+
+                </td>
             </tr>
-    </table>        
-    </fieldset>
-    
-    
-    <!-- Registo e relatorio dos valores  -->
-    <table>
-        <tr>
-            <td> 
-                <fieldset id="registro" style="display: none; ">
+        </table>
 
-                    <legend id="TituloGastoDiarios">Registro de gastos diarios</legend>
-       
-                </fieldset>
-            </td>      
+    </main>
 
-            <td style="vertical-align: top;">
-                <!-- FieldSet Relatorio -->
-                <fieldset id="relatorio" style="display: none; ">
-    
-                    <legend id="TituloRelatorio">Relatório sobre seus gastos mensal </legend>
-                    
-                    <p id="pMessagemMeta"> </p>
-                    
-                    <p id="pTotalGastoNoMes"> </p>
-                    <p id="pTotalEssencial"> </p>
-                    <p id="pTotalNaoEssencial"> </p>
-                    <p id="pTotalEntretenimento"> </p>
-                    <p id="pTotalModa"> </p>
-                    <p id="pTotalfastfood"> </p>
-                    <p id="pTotalViagens"> </p>
-                    <p id="pTotalEletronicos"> </p>
-                    <p id="pTotalUtensilios"> </p>
-                    <p id="pTotalOutrosNao"> </p>
-                    <p id="pDiaQueMaisGastou"> </p>
-                    <p id="pObservacaoDiaMaisGastou"> </p>
-
-                    <p id="pDiaMaiorGasto"> </p>
-                    <p id="pObservacaoDiaMaiorGasto"></p>
-
-                </fieldset>
-            </td>
-            <td style="vertical-align: top;">
-
-            <button type="button" id="NovoMes" onclick=" InserirNovoMes(); document.getElementById('form2').reportValidity();" style="display: none;">Inserir valores para Novo Mês</button>
-
-            </td>
-        </tr>
-    </table> 
-
-   
-
-</main>
-
-
-
-    
 </body>
+
 </html>
