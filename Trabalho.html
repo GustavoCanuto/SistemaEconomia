@@ -1,6 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+       <!--  
+   Desenvolvido por: Gustavo Canuto
+   Descrição do problema:Não conseguir controlar gastos para economizar, nao ter controle do quanto gastou, economizou e com o que gastou.
+    
+
+    Descrição breve do funcionamento do algoritmo:É cadastrado uma media dos gastos essencial, 
+    renda e o valor que gostaria de economizar para manter reservado, se os valores inseridos for possivel fazer uma economia é exibido a pagina 
+    de gastos não essencial, nela é mostrado aviso quando ultrapassa valor que pode gastar no mês, e registra um relatorio para cada dia,
+    após finalizar retorna pagina inicial perguntando se houve alguma alteração nos gastos essencial ou renda, após confirmar valores é 
+    mostrando o registro de gasto e um relatorio mostrando total de gasto com cada categoria, dia que mais gastou e se a pessoa conseguiu
+    economizar aquele mês.
+
+    Identificação das variáveis de entrada:
+    formulario1 : Recebe informação formulario dos gastos essencial para verificar se ele foi preenchido conforme parametros
+    formulario2 : Recebe informação formulario dos gastos não essencial para verificar se ele foi preenchido conforme parametros
+    registro :Recebe informação do fieldset registro para inserir e apagar texto dentro dele
+    
+       
+            AluguelInput,
+            AguaInput,
+            EnergiaInput,
+            TelefoneInput,
+            GasInput,
+            AlimentacaoInput,
+            transporteInput,
+            OutrosInput,
+            RendaInput,
+            EconomiaInput :
+       Recebe valores dos inputs do formulario de gastos essenciais 
+    
+    
+            EntretenimentoInput, 
+            ModaInput, 
+            fastfoodInput, 
+            ViagensInput, 
+            EletronicosInput, 
+            UtensiliosInput, 
+            OutrosNaoInput, 
+            ObservacaoInput:
+         Recebe valores dos inputs do formulario de gastos não essenciais 
+    
+
+    ***************************
+
+    Identificação das variáveis de saida:
+   TotalEssencial: mostra soma dos valores inseridos no Inputs dos gastos essenciais
+    MaximoEconomia: Saldo, valor da renda menos gastos totais, usado para informar valor maximo possivel economizar e saldo 
+    ValorPodeGastar:valor que pode gastar sem ultrapassar valor que deseja economizar, Valor maximo que pode economizar menos valor que desaja economizar
+    ValorSugeridoGastarPorDia: mostra valor que pode gastar dividido por 31
+    TotalGastoNoMes:</em> mostrar soma total essencial e nao essencial
+    TotalGastoNoDia:mostra soma dos valores gasto no dia 
+    DiaMaiorGasto:utilizada para mostrar dia com maior gasto
+  MaisDeUmDia: mostra os dias maiores gasto, utilizada para caso dia maior gasto seja igual outro dia
+    
+  
+            TotalEntretenimento, 
+            TotalModa, 
+            Totalfastfood, 
+            TotalViagens, 
+            TotalEletronicos, 
+            TotalUtensilios, 
+            TotalOutrosNao, 
+            TotalNaoEssencial :
+       utlizadas para msotrar a soma dos valores de cada categoria conforme os nomes da variaveis
+    
+    ValorDiaMaiorGasto:</em> mostra o valor do dia com maior gasto
+  diaAtual: mostra o dia atual 
+   
+            pDiaDosGastos, 
+            pValorGastoEntretenimento, 
+            pValorGastoModa, 
+            pValorGastofastfood, 
+            pValorGastoViagens, 
+            pValorGastoEletronicos, 
+            pValorGastoUtensilios, 
+            pValorGastoOutrosNao, 
+            pValorTotalGastoDia, 
+            pValorObservacao :
+       Criar um paragrafo para exibir valores de acordo com o nome da varaivel 
+
+   
+
+
+    ***************************
+
+   Identificação das variáveis de controle:
+    SomaEssencialEconomia:Soma valores essencial mais Valor que deseja economizar para verificar se não é maior que a renda
+    <em>valorPodeGastarFixo:</em> valor que pode gastar sem ultrapassar valor que deseja economizar, porém considerando apenas gastos essencial e valor que gostaria de economizar, utilizado para verificar a porcentagem que foi gasta em relação valor inicial
+    <em>TituloGastoDiarios: recupera legend do fieldset registro de gastos
+   PorcetagemGastoNaoEssencial:  valor em porcentagem de valor gasto em relação valor que pode gastar inicial
+    
+ 
+    -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,103 +106,7 @@
 <body>
 
 <header>
-    <p><strong>Desenvolvido por:</strong> Gustavo Canuto
-    <strong>Descrição do problema:</strong> Não conseguir controlar gastos para economizar, nao ter controle do quanto gastou, economizou e com o que gastou.</p>
-    <button id="botaoCabecalho" onclick="MostrarCabecalho();">Mostrar Cabeçalho completo</button>
-
-    <div id="Cabecalho" style="display: none;">
-    <p><strong>Descrição breve do funcionamento do algoritmo:</strong> É cadastrado uma media dos gastos essencial, 
-    renda e o valor que gostaria de economizar para manter reservado, se os valores inseridos for possivel fazer uma economia é exibido a pagina 
-    de gastos não essencial, nela é mostrado aviso quando ultrapassa valor que pode gastar no mês, e registra um relatorio para cada dia,
-    após finalizar retorna pagina inicial perguntando se houve alguma alteração nos gastos essencial ou renda, após confirmar valores é 
-    mostrando o registro de gasto e um relatorio mostrando total de gasto com cada categoria, dia que mais gastou e se a pessoa conseguiu
-    economizar aquele mês.</p>
-
-    <p><strong>Identificação das variáveis de entrada:</strong></p>
-    <P><em>formulario1 :</em> Recebe informação formulario dos gastos essencial para verificar se ele foi preenchido conforme parametros</P>
-    <P><em>formulario2 :</em> Recebe informação formulario dos gastos não essencial para verificar se ele foi preenchido conforme parametros</P>
-    <P><em>registro :</em> Recebe informação do fieldset registro para inserir e apagar texto dentro dele</P>
-    <p>
-       <em>
-            AluguelInput,
-            AguaInput,
-            EnergiaInput,
-            TelefoneInput,
-            GasInput,
-            AlimentacaoInput,
-            transporteInput,
-            OutrosInput,
-            RendaInput,
-            EconomiaInput :
-       </em> Recebe valores dos inputs do formulario de gastos essenciais 
-    </p>
-    <p>
-        <em>
-            EntretenimentoInput, 
-            ModaInput, 
-            fastfoodInput, 
-            ViagensInput, 
-            EletronicosInput, 
-            UtensiliosInput, 
-            OutrosNaoInput, 
-            ObservacaoInput:
-        </em> Recebe valores dos inputs do formulario de gastos não essenciais 
-    </p>
-
-    <p>***************************</p>
-
-    <p><strong>Identificação das variáveis de saida:</strong></p>
-    <p><em>TotalEssencial:</em> mostra soma dos valores inseridos no Inputs dos gastos essenciais</p>
-    <p><em>MaximoEconomia:</em> Saldo, valor da renda menos gastos totais, usado para informar valor maximo possivel economizar e saldo </p>
-    <p><em>ValorPodeGastar:</em> valor que pode gastar sem ultrapassar valor que deseja economizar, Valor maximo que pode economizar menos valor que desaja economizar</p>  
-    <p><em>ValorSugeridoGastarPorDia:</em> mostra valor que pode gastar dividido por 31</p>
-    <p><em>TotalGastoNoMes:</em> mostrar soma total essencial e nao essencial</p>
-    <p><em>TotalGastoNoDia:</em> mostra soma dos valores gasto no dia </p>
-    <p><em>DiaMaiorGasto:</em> utilizada para mostrar dia com maior gasto</p>
-    <p><em>MaisDeUmDia:</em> mostra os dias maiores gasto, utilizada para caso dia maior gasto seja igual outro dia</p>
-    
-    <p>
-       <em>
-            TotalEntretenimento, 
-            TotalModa, 
-            Totalfastfood, 
-            TotalViagens, 
-            TotalEletronicos, 
-            TotalUtensilios, 
-            TotalOutrosNao, 
-            TotalNaoEssencial :
-       </em> utlizadas para msotrar a soma dos valores de cada categoria conforme os nomes da variaveis
-    </p>
-    <p><em>ValorDiaMaiorGasto:</em> mostra o valor do dia com maior gasto</p>
-    <p><em>diaAtual:</em> mostra o dia atual </p>
-    <p>
-      <em>
-            pDiaDosGastos, 
-            pValorGastoEntretenimento, 
-            pValorGastoModa, 
-            pValorGastofastfood, 
-            pValorGastoViagens, 
-            pValorGastoEletronicos, 
-            pValorGastoUtensilios, 
-            pValorGastoOutrosNao, 
-            pValorTotalGastoDia, 
-            pValorObservacao :
-      </em> Criar um paragrafo para exibir valores de acordo com o nome da varaivel 
-
-    </p>
-
-
-    <p>***************************</p>
-
-    <p><strong>Identificação das variáveis de controle:</strong></p>
-    <p><em>SomaEssencialEconomia:</em> Soma valores essencial mais Valor que deseja economizar para verificar se não é maior que a renda </p>
-    <p><em>valorPodeGastarFixo:</em> valor que pode gastar sem ultrapassar valor que deseja economizar, porém considerando apenas gastos essencial e valor que gostaria de economizar, utilizado para verificar a porcentagem que foi gasta em relação valor inicial</p>
-    <p><em>TituloGastoDiarios: </em>recupera legend do fieldset registro de gastos </p>
-    <p><em>PorcetagemGastoNaoEssencial: </em> valor em porcentagem de valor gasto em relação valor que pode gastar inicial</p>
-    
-    <button onclick="EsconderCabecalho();">Esconder Cabeçalho completo</button>
-
-    </div>  
+ 
 </header>
 
 <main>
